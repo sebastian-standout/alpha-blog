@@ -1,0 +1,10 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+.jumbotron {
+    background-image: asset-url('blog-jumbotron.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    height: 30rem;
+}
