@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="form-group row justify-content-md-center">
+        <div class="float-left col-8">
+            <%= render 'shared/error_messages', error: @user %>
+        </div>
+
+        <div class="col-8">
+            <%= form_with(model: @user, local: true) do |f| %>
+                <div class="form-group row">
+                    <%= f.label :username %> <br />
+                    <%= f.text_field :username, placeholder: 'Enter a username', class: 'form-control shadow-sm rounded' %>
+                </div>
+
+                <div class="form-group row">
+                    <%= f.label :email %> <br />
+                    <%= f.email_field :email, placeholder: 'Enter your email address', class: 'form-control shadow-sm rounded' %>
+                </div>
+
+                <div class="form-group row">
+                    <%= f.label :password %> <br />
+                    <%= f.password_field :password, placeholder: 'Enter a password', class: 'form-control shadow-sm rounded' %>
+                </div>
+
+                <div class="form-group row">
+                    <%= f.submit class: 'btn btn-outline-success btn' %>
+                </div>
+
+                <div class="form-group row">
+                    <%= link_to 'Cancel and return to @users listing', users_path %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
