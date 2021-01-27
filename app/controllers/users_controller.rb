@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :find_user
+    before_action :find_user, except: [:index]
 
     def new
         @user = User.new
@@ -14,13 +14,17 @@ class UsersController < ApplicationController
         @articles = @user.articles
     end
 
+    def index
+        @users = User.all
+    end
+
     def update
         find_user
 
        if @user.update(user_params)
             flash[:notice] = "Your account was successfully updated!"
 
-            redirect_to articles_path
+            redirect_to @user
        else
             render 'edit'
        end
