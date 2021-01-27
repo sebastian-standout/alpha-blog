@@ -1,14 +1,21 @@
 class UsersController < ApplicationController
+    before_action :find_user
+
     def new
         @user = User.new
     end
 
     def edit
-       @user = User.find(params[:id])
+       find_user
+    end
+
+    def show
+        @user = User.find(params[:id])
+        @articles = @user.articles
     end
 
     def update
-        @user = User.find(params[:id])
+        find_user
 
        if @user.update(user_params)
             flash[:notice] = "Your account was successfully updated!"
@@ -35,5 +42,9 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:username, :email, :password)
+    end
+
+    def find_user
+        @user = User.find(params[:id])
     end
 end
