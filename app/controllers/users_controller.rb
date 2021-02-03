@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-    before_action :find_user, except: [:index]
+    before_action :set_user, only: [:new, :show, :edit, :update]
 
     def new
         @user = User.new
     end
 
     def edit
-       find_user
+       set_user
     end
 
     def show
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     end
 
     def update
-        find_user
+        set_user
 
        if @user.update(user_params)
             flash[:notice] = "Your account was successfully updated!"
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
+            session[:user_id] = @user.id
             flash[:notice] = "Welcome #{@user.username}, you have successfully signed up!"
 
             redirect_to articles_path
@@ -48,7 +49,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(:username, :email, :password)
     end
 
-    def find_user
+    def set_user
         @user = User.find(params[:id])
     end
 end

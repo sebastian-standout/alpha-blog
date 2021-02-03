@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
 
   root 'pages#home'
-  get  'about', to: 'pages#about'
+
+  get 'about', to: 'pages#about'
   get 'signup', to: 'users#new'
   get 'users', to: 'users#index'
   get 'login', to: 'sessions#new'
